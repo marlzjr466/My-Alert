@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>My alert</title>
+
+		<link rel="stylesheet" type="text/css" href="myAlert.css">
+	</head>
+	<body>
+		<br><br>
+		<center>
+			<button onclick="myAlert(1)">Success</button>
+			<button onclick="myAlert(2)">Error</button>
+			<button onclick="myAlert(3)">Warning</button>
+			<button onclick="myAlert(4)">Info</button>
+			<button onclick="myAlert(5)">Confirm</button>
+		</center>
+	</body>
+	<script type="text/javascript" src="myAlert.js"></script>
+
+	<script type="text/javascript">
+		var myalert = new Myalert();
+		myalert.initialize();
+
+		function myAlert(n) {
+			switch(n) {
+				case 1: {
+					myalert.success('Success!', 'Data has been added.')
+				} break
+
+				case 2: {
+					myalert.error('Error, Something happen!', 'Server connection timeout!')
+				} break
+
+				case 3: {
+					myalert.warning('Warning!', 'Some data will be lost!','Okay','Cancel')
+					.then(function(response) {
+						if (response) {
+							myalert.success('Deleted Successfully!', 'Data has been removed.')
+						} else {
+							myalert.info('Cancelled', 'Process has been cancelled')
+						}
+					})
+				} break
+
+				case 4: {
+					myalert.info('Hello!', 'Some information here..', 'Great')
+				} break
+
+				case 5: {
+					myalert.confirm('Are you sure!', 'You want to delete this data?')
+					.then(function(response) {
+						if (response) {
+							myalert.success('Deleted Successfully!', 'Data has been removed.')
+						} else {
+							myalert.info('Cancelled', 'Process has been cancelled')
+						}
+					})
+				} break
+			}
+			
+		}
+	</script>
+</html>
